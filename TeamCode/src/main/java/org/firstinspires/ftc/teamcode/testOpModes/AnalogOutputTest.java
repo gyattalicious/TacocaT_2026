@@ -11,14 +11,10 @@ public class AnalogOutputTest extends OpMode {
     private CRServo servo;
     private AnalogInput analog;
     private double voltage;
-    private double positionDegrees = 0;
-
     @Override
     public void init() {
         servo = hardwareMap.get(CRServo.class, "servo");
         analog = hardwareMap.get(AnalogInput.class, "analog");
-
-        positionDegrees = 0;
     }
 
     @Override
@@ -30,12 +26,8 @@ public class AnalogOutputTest extends OpMode {
         } else {
             servo.setPower(0);
         }
-
         voltage = analog.getVoltage();
-        positionDegrees = (voltage / 9.17) * 360;
-
         telemetry.addData("Analog Voltage", voltage);
-        telemetry.addData("Estimated Angle", positionDegrees);
         telemetry.update();
     }
 }

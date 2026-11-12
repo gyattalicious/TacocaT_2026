@@ -54,7 +54,6 @@ import java.util.Set;
  * together, you need to make sure that can't cause damage to your robot.
  */
 @Utility(name = "Test Hardware", description = "Test hardware devices in your robot configuration")
-
 @SuppressWarnings("unused")
 public class UtilityTestHardware extends OpMode {
     protected static class Device {
