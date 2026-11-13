@@ -1,10 +1,11 @@
 package org.firstinspires.ftc.teamcode.testOpModes;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.mechanisms.Intake;
-
+@Disabled
 @TeleOp
 public class TestIntake extends OpMode {
     Intake intake = new Intake();

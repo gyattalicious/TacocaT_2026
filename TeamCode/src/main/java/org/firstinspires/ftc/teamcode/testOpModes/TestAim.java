@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.testOpModes;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -7,7 +8,7 @@ import org.firstinspires.ftc.teamcode.mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.mechanisms.PositionalAim;
 import org.firstinspires.ftc.teamcode.mechanisms.Turret;
 import org.firstinspires.ftc.teamcode.pedro.Constants;
-
+@Disabled
 @TeleOp
 public class TestAim extends OpMode {
     PositionalAim aim = new PositionalAim();

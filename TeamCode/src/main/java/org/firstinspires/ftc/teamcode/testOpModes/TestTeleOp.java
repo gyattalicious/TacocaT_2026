@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.mechanisms.MecanumDrive;
 import org.firstinspires.ftc.teamcode.mechanisms.PositionalAim;
 import org.firstinspires.ftc.teamcode.mechanisms.ShooterPIDFTesting;
 import org.firstinspires.ftc.teamcode.mechanisms.Turret;
-
+@Disabled
 @TeleOp
 //@Disabled
 public class TestTeleOp extends OpMode {

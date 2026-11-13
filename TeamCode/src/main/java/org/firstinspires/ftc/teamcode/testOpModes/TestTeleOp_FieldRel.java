@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.mechanisms.MecanumDrive;
-
+@Disabled
 @TeleOp
 //@Disabled
 public class TestTeleOp_FieldRel extends OpMode {

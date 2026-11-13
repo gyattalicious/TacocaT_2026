@@ -15,9 +15,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Turret {
     public static DcMotorEx shooter1;
-    static DcMotorEx shooter2;
-    static CRServo rotator1;
-    static CRServo rotator2;
+    public static DcMotorEx shooter2;
+    public static CRServo rotator1;
+    public static CRServo rotator2;
     private static AnalogInput turretTracker1;
     private static AnalogInput turretTracker2;
 
@@ -108,8 +108,39 @@ public class Turret {
     }
 
     public static void setTurretRotate(double power) {
-        rotator1.setPower(power);
-        rotator2.setPower(power);
+        if (Math.abs(totalTurretDegrees) < 750) {
+            rotator1.setPower(power);
+            rotator2.setPower(power);
+        } else {
+            if (totalTurretDegrees > 0 ) {
+                rotator1.setPower(-1);
+            } else {
+                rotator1.setPower(1);
+            }
+        /*
+                                         // if turret angle is 'safe', accept normal input
+        if (Math.abs(totalTurretDegrees) < 600) {
+            rotator1.setPower(power);
+            rotator2.setPower(power);
+        } else {
+            if (Math.abs(totalTurretDegrees) < 750) { //if its still safe but nearing bad stuff, slow
+                rotator1.setPower(() * power);
+                rotator2.setPower(() * power);
+            }
+                if(totalTurretDegrees > 0) { // check which direction it is going,
+                    if(power < 0) {          // and only accept opposite inputs
+                        rotator1.setPower(power);
+                        rotator2.setPower(power);
+                    }
+                } else {
+                    if(power > 0) {
+                        rotator1.setPower(power);
+                        rotator2.setPower(power);
+                    }
+            }
+        }
+*/
+        }
     }
 
     public static void setLauncherVelocity(double Velocity) {

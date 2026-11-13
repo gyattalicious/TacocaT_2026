@@ -16,4 +16,7 @@ public class FlowerPlower {
     public static void plowUp() {
         FlowerPlower.setPosition(-1);
     }
+    public static void intake() {
+        FlowerPlower.setPosition(-.35);
+    }
 }
