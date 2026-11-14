@@ -77,7 +77,7 @@ public class StaticBlueAuto extends OpMode {
                         follow(follower, Flower2ToShoot())
                         .with(c.flowerPlowerUp(plower))
                 )
-                .then(c.shoot(this, getRuntime() + 24, intake, turret, autoAim))
+                .then(c.shoot(this, getRuntime() + 25, intake, turret, autoAim))
                 .then(follow(follower, park()));
     }
 

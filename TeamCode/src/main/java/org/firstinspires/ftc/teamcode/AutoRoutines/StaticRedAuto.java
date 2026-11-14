@@ -32,7 +32,7 @@ public class StaticRedAuto extends OpMode {
     private final PoseFactory poseFactory = PoseFactory.degrees();
     private final Pose start = poseFactory.of(57.5, 8, 90);
     private final Pose Flower1 = poseFactory.of(20, 48.5, 180);
-    private final Pose F1Clear = poseFactory.of(12.5, 48.5, 180);
+    private final Pose F1Clear = poseFactory.of(12, 48.5, 180);
     private final Pose shoot = poseFactory.of(57.5, 126, 270);
     private final Pose Flower2 = poseFactory.of(47.5, 120, 90);
     private final Pose F2Clear = poseFactory.of(47.5, 127.5, 90);
@@ -56,28 +56,28 @@ public class StaticRedAuto extends OpMode {
                 )
                 .then(
                         follow(follower, clearFlower1())
-                                .with(c.runIntake(hardwareMap, this, getRuntime() + 7, intake))
+                                .with(c.runIntake(hardwareMap, this, getRuntime() + 8, intake))
                 )
                 .then(follow(follower, disengageFlower1()))
                 .then(
                         follow(follower, flower1ToShoot())
                                 .with(c.flowerPlowerUp(plower))
                 )
-                .then(c.shoot(this, getRuntime() + 14, intake, turret, autoAim))
+                .then(c.shoot(this, getRuntime() + 15, intake, turret, autoAim))
                 .then(
                         follow(follower, shootToFlower2())
                                 .with(c.flowerPlowerDown(plower))
                 )
                 .then(
                         follow(follower, clearFlower2())
-                                .with(c.runIntake(hardwareMap, this, getRuntime() + 17, intake))
+                                .with(c.runIntake(hardwareMap, this, getRuntime() + 19, intake))
                 )
                 .then(follow(follower, disengageFlower2()))
                 .then(
                         follow(follower, Flower2ToShoot())
                                 .with(c.flowerPlowerUp(plower))
                 )
-                .then(c.shoot(this, getRuntime() + 22, intake, turret, autoAim))
+                .then(c.shoot(this, getRuntime() + 25, intake, turret, autoAim))
                 .then(follow(follower, park()));
     }
 

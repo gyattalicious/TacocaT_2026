@@ -6,13 +6,14 @@ import org.firstinspires.ftc.teamcode.mechanisms.FlowerIntake;
 import org.firstinspires.ftc.teamcode.mechanisms.FlowerPlower;
 import org.firstinspires.ftc.teamcode.mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.mechanisms.MecanumDrive;
+import org.firstinspires.ftc.teamcode.mechanisms.PedroFieldRel;
 import org.firstinspires.ftc.teamcode.mechanisms.PositionalAim;
 import org.firstinspires.ftc.teamcode.mechanisms.Turret;
 @TeleOp
 public class Red_CompTeleOp extends OpMode {
     boolean driveManual = false;
     boolean turretManual = false;
-    int damping = 4;
+    int damping = 6;
     double driveTrainForward = 0 ;
     double driveTrainStrafe = 0 ;
     double driveTrainRotate = 0 ;
@@ -22,9 +23,11 @@ public class Red_CompTeleOp extends OpMode {
     FlowerIntake flowerIntake = new FlowerIntake();
     Turret turret = new Turret();
     PositionalAim autoAim = new PositionalAim();
+    PedroFieldRel fieldRel = new PedroFieldRel();
     org.firstinspires.ftc.teamcode.mechanisms.ShooterPIDFTesting shooter = new org.firstinspires.ftc.teamcode.mechanisms.ShooterPIDFTesting();
     @Override
     public void init() {
+        fieldRel.init(hardwareMap, true);
         drive.init(hardwareMap);
         intake.init(hardwareMap);
         plow.init(hardwareMap);
@@ -58,7 +61,7 @@ public class Red_CompTeleOp extends OpMode {
                 driveManual = !driveManual;
             }
             if (gamepad1.left_stick_x == 0) {
-                damping = 4;
+                damping = 6;
             }
             if (gamepad1.left_stick_button) {
                 driveTrainForward = -gamepad1.left_stick_y * .5;
@@ -75,7 +78,7 @@ public class Red_CompTeleOp extends OpMode {
             drive.drive(driveTrainForward, driveTrainStrafe, driveTrainRotate);
             if (gamepad2.right_trigger + gamepad2.left_trigger > 0) {
                 if (gamepad2.right_trigger != 0) {
-                    turret.setLauncherVelocity(1100);
+                    turret.setLauncherVelocity(1420);
                 }
                 if (gamepad2.left_trigger != 0) {
                     turret.setLauncherVelocity(-500);
@@ -138,18 +141,18 @@ public class Red_CompTeleOp extends OpMode {
                 damping = 4;
             }
             if (gamepad1.left_stick_button) {
-                driveTrainForward = -gamepad1.left_stick_y * .5;
+                driveTrainForward = gamepad1.left_stick_y * .5;
                 driveTrainStrafe = gamepad1.left_stick_x * .5;
                 driveTrainRotate = gamepad1.right_stick_x * .5;
             } else {
-                driveTrainForward = -gamepad1.left_stick_y;
+                driveTrainForward = gamepad1.left_stick_y;
                 driveTrainStrafe = gamepad1.left_stick_x / damping;
                 driveTrainRotate = gamepad1.right_stick_x;
                 if (damping > 1) {
                     damping -= 1;
                 }
             }
-            drive.driveFieldRelative(driveTrainForward, driveTrainStrafe, driveTrainRotate);
+            fieldRel.loop(driveTrainForward, driveTrainStrafe, driveTrainRotate);
             if (gamepad2.right_trigger + gamepad2.left_trigger > 0) {
                 if (gamepad2.right_trigger != 0) {
                     autoAim.launchEnabled = true;
