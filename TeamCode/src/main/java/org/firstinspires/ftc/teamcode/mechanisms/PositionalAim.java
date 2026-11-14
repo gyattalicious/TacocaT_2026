@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.teamcode.AutoRoutines.Commands;
 import org.firstinspires.ftc.teamcode.AutoRoutines.StaticBlueAuto;
 import org.firstinspires.ftc.teamcode.AutoRoutines.StaticRedAuto;
 import org.firstinspires.ftc.teamcode.pedro.Constants;
@@ -72,12 +73,8 @@ public class PositionalAim {
 
         if (inTeleop) {
             follower = Constants.create(hardwareMap);
-            if (StaticBlueAuto.lastPosition != null) {
-                if (Red) {
-                    follower.setPose(StaticRedAuto.lastPosition);
-                } else {
-                    follower.setPose(StaticBlueAuto.lastPosition);
-                }
+            if (Commands.lastPosition != null) {
+                follower.setPose(Commands.lastPosition);
             } else {
                 follower.setPose(start);
             }
@@ -88,7 +85,9 @@ public class PositionalAim {
             follower.update();
         }
     }
-
+    public void reset() {
+        follower.setPose(start);
+    }
     public void loop() {
         follower.update();
         robotPose = follower.pose();

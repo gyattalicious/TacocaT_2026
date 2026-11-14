@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.mechanisms;
 
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 
@@ -118,6 +117,22 @@ public class MecanumDrive {
         double newForward = r * Math.sin(theta);
         double newStrafe = r * Math.cos(theta);
 
+        // Call drive method with robot relative forward and strafe values
+        this.drive(newForward, newStrafe, rotate);
+    }
+    public void driveFieldRelativeDamped (double forward, double strafe, double rotate) {
+
+        // Convert Cartesian coordinates to Polar coordinates
+        double theta = Math.atan2(forward, strafe);
+        double r = Math.hypot(strafe, forward);
+
+        // Rotate angle based on robot's current yaw angle read from the IMU
+        theta = AngleUnit.normalizeRadians(theta -
+                imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS));
+
+        // Convert back to Cartesian coordinates
+        double newForward = r * Math.sin(theta);
+        double newStrafe = r * Math.cos(theta);
         // Call drive method with robot relative forward and strafe values
         this.drive(newForward, newStrafe, rotate);
     }
